@@ -1,0 +1,16 @@
+import pandas as pd
+from sklearn.tree import DecisionTreeRegressor
+
+input_data = 'train.csv'
+iowa_data = pd.read_csv(input_data)
+
+y = iowa_data.SalePrice
+iowa_features = ['LotArea', 'YearBuilt', '1stFlrSF', '2ndFlrSF', '2ndFlrSF', 'FullBath', 'BedroomAbvGr', 'TotRmsAbvGrd']
+x = iowa_data[iowa_features]
+iowa_model = DecisionTreeRegressor(random_state=1)
+iowa_model.fit(x, y)
+
+print("Making predictions for the following 5 houses:")
+print(x.head())
+print("The predictions are")
+print(iowa_model.predict(x.head()))
